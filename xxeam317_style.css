@@ -1,0 +1,127 @@
+body{
+    background: white;
+}
+
+.content{
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    background: white;
+}
+
+.filter{
+    border: 1px solid #D9DFE3;
+    padding: 5px;
+}
+
+.button-bar {
+    margin: 5px 10px;
+	padding: 0px;
+}
+
+.button-bar .button-block {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+
+.button-bar .button-block:not(:nth-child(1)) {
+	border-left: 1px solid gray;
+	padding-left: 5px;
+}
+
+
+.editor {
+	
+}
+
+.scheme{
+    object-fit: contain;
+    position: relative;
+}
+
+.scheme_canvas {
+    border: 1px solid green;
+    background: transparent;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.menu {
+    position: absolute;
+    opacity: 0.75;
+    background: #ccc;
+    border: 1px solid black;
+    padding: 5px;
+    z-index: 999;
+}
+
+.menu:hover {
+    opacity: 1;
+}
+
+.menu input, .menu button{
+    width: 100%;
+}
+
+.point {
+    border-radius: 45px;
+    position: absolute;
+    border: 1px solid red;
+    background: yellow;
+    cursor: all-scroll;
+    transition: background 0.5s;
+}
+
+.point:hover {
+    background: orange;
+}
+
+.point_name {
+    width: 50px;
+    opacity: 0.75;
+    font-size: 10px;
+    transition: 0.5s;
+    text-align: center;
+    transform: translate(-30%, -100%);
+    background: #c4c4c4;
+}
+
+.point:hover .point_name {
+    opacity: 1;
+    font-size: 10px;
+    position: absolute;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.scheme svg {
+    border: 1px solid red;
+}
+
+.sub-modal-bg {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(0, 0, 0, 0.8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+.sub-modal-win {
+	min-width: 30%;
+	background: #fff;
+	border: 1px solid gray;
+}
+
+.sub-modal-win .button-bar button{
+	margin: 0px 5px;
+	min-width: 50px;
+}
