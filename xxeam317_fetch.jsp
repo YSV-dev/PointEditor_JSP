@@ -31,14 +31,14 @@
     }
     
     //Подключение для разработки
-    /*String jdbcUrl = "jdbc:oracle:thin:@dprod.local.uralkali.com:1561:dprod";
-    String userid = "xxeam";
-    String password = "xxeam";
+    /*String jdbcUrl = "jdbc:oracle:thin:@some_connection";
+    String userid = "1";
+    String password = "1";
 	*/
     /*
-    String jdbcUrl = "jdbc:oracle:thin:@t8-clone-06.uralkali.com:1521/ebs_plan";
-    String userid = "apps";
-    String password = "apps";
+    String jdbcUrl = "jdbc:oracle:thin:@some_connection2";
+    String userid = "1";
+    String password = "1";
 	
     try {
           OracleDataSource ds;
@@ -110,7 +110,7 @@
         String query = "SELECT "+
            "'['||LISTAGG('{\"code\":' || ORGANIZATION_ID || ', \"name\":\"'|| code||' '||alias||' '||DECODE(ORG_TYPE, 'M', 'Рудник', 'Поверхность')||'\"}', ',\n') "+
            "WITHIN GROUP (ORDER BY CODE)||']' AS DATA "+
-           "FROM xxeam.XXMOBILE_ORGANIZATIONS_V";
+           "FROM xxeam.ORGANIZATIONS_V";
         try {
             ResultSet rs = cStmt.executeQuery(query);
             rs.next();
@@ -125,11 +125,11 @@
         String org_id = request.getParameter("org_id").toString();
         
         String query = "SELECT msi.segment1 AS NAME, ROUTING_SEQUENCE_ID AS ID "+
-        "FROM apps.BOM_OPERATIONAL_ROUTINGS bor "+
-        "INNER JOIN apps.mtl_system_items msi ON "+
+        "FROM apps.BOM_OPERATIONS bor "+
+        "INNER JOIN apps.mtl_items msi ON "+
         "           bor.assembly_item_id = msi.inventory_item_id "+
         "       and bor.ORGANIZATION_ID  = msi.ORGANIZATION_ID "+
-        "       and msi.attribute9       = 'Опросный лист' "+
+        "       and msi.attribute9       = 'Опросный' "+
         "WHERE msi.ORGANIZATION_ID = " + org_id +
         " ORDER BY msi.segment1";
         
@@ -158,11 +158,11 @@
         String techcard_id = request.getParameter("techcard_id").toString();
         
         String query = "SELECT msi.ORGANIZATION_ID AS ID "+
-        "FROM apps.BOM_OPERATIONAL_ROUTINGS bor "+
-        "INNER JOIN apps.mtl_system_items msi ON "+
+        "FROM apps.BOM_OPERATIONS bor "+
+        "INNER JOIN apps.mtl_items msi ON "+
         "           bor.assembly_item_id = msi.inventory_item_id "+
         "       and bor.ORGANIZATION_ID  = msi.ORGANIZATION_ID "+
-        "       and msi.attribute9       = 'Опросный лист' "+
+        "       and msi.attribute9       = 'Опросный' "+
         "WHERE ROUTING_SEQUENCE_ID = " + techcard_id +
         "  AND rownum = 1 "+
 		"ORDER BY msi.segment1";
@@ -190,7 +190,7 @@
         String query = "SELECT TO_CLOB(FILE_DATA) AS DATA " +
         "FROM   fnd_attached_docs_form_vl ad " +
         "INNER JOIN apps.fnd_lobs l ON file_id = media_id " +
-        "INNER JOIN FND_DOCUMENT_CATEGORIES_TL DCT ON dct.USER_NAME = 'XXEAM: Схема оборудования для МП' AND dct.LANGUAGE = 'RU' AND dct.CATEGORY_ID = ad.CATEGORY_ID " +
+        "INNER JOIN FND_DOCUMENT_CATEGORIES_TL DCT ON dct.USER_NAME = 'Схема оборудования' AND dct.LANGUAGE = 'RU' AND dct.CATEGORY_ID = ad.CATEGORY_ID " +
         "WHERE  1=1  " +
         "       AND (security_type = 4 OR publish_flag = 'Y' OR (security_type = 1 AND security_id = 124)) " +
         "       AND PK1_VALUE = '"+techcard_id+"' " +
